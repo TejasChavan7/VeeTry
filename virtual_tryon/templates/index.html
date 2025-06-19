@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Try-On Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; background: linear-gradient(45deg, #a1c4fd, #c2e9fb, #fbc2eb, #a6c1ee); background-size: 400%; animation: gradientShift 15s ease infinite; min-height: 100vh; }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        nav { padding: 15px 0; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; width: 85%; max-width: 1200px; margin: auto; }
+        nav h2 { color: #ffffff; font-size: 1.8rem; font-weight: 700; text-shadow: 0 2px 6px rgba(255, 255, 255, 0.5); }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav ul li a { color: #ffffff; text-decoration: none; font-weight: 700; text-shadow: 0 2px 6px rgba(255, 255, 255, 0.5); transition: color 0.3s ease; }
+        nav ul li a:hover { color: #e8491d; }
+        .container { width: 85%; max-width: 1200px; margin: auto; padding: 20px; }
+        header { background: transparent; color: #ffffff; padding: 20px 0; text-align: center; border-bottom: 3px solid #e8491d; }
+        header h1 { font-size: 2.5rem; font-weight: 600; letter-spacing: 1px; }
+        .category { background: rgba(255, 255, 255, 0.95); margin: 30px 0; padding: 25px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; }
+        .category:hover { transform: translateY(-5px); }
+        .category h2 { color: #35424a; font-size: 1.8rem; font-weight: 600; border-bottom: 2px solid #e8491d; padding-bottom: 10px; margin-bottom: 20px; }
+        .item-container { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
+        .item { background: #ffffff; border: none; border-radius: 10px; padding: 20px; width: calc(33.333% - 20px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; }
+        .item:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 0 10px rgba(232, 73, 29, 0.3); }
+        .item img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 15px; transition: transform 0.3s ease; }
+        .item:hover img { transform: scale(1.1); }
+        .btn { display: inline-block; padding: 12px 25px; background: #e8491d; color: #ffffff; text-decoration: none; border-radius: 25px; font-weight: 500; transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease; }
+        .btn:hover { background: #c73b0f; transform: scale(1.1); box-shadow: 0 0 15px rgba(232, 73, 29, 0.5); }
+        @media(max-width: 768px) { .container { width: 95%; } .item-container { flex-direction: column; } .item { width: 100%; } header h1 { font-size: 1.8rem; } nav .container { flex-direction: column; gap: 10px; } nav h2 { font-size: 1.5rem; text-shadow: 0 1px 5px rgba(255, 255, 255, 0.5); } nav ul { flex-direction: column; gap: 10px; text-align: center; } nav ul li a { font-weight: 700; text-shadow: 0 1px 5px rgba(255, 255, 255, 0.5); } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h2>VEETRY</h2>
+            <ul>
+                <li><a href="/home" target="_self">Home</a></li>
+                <li><a href="/about" target="_self">About</a></li>
+                <li><a href="/contact" target="_self">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <header>
+        <div class="container">
+            <h1>Virtual Try-On Experience</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="category">
+            <h2>Sunglasses</h2>
+            <div class="item-container">
+                <div class="item">
+                    <img src="/static/sunglasses1.png" alt="Sunglasses 1" onerror="this.src='https://via.placeholder.com/220'; this.alt='Image not found'">
+                    <a href="/try-now?type=sunglasses&item=sunglasses1.png" class="btn" onclick="tryNow(event, this.href)">Try Now</a>
+                </div>
+                <div class="item">
+                    <img src="/static/sunglasses2.png" alt="Sunglasses 2" onerror="this.src='https://via.placeholder.com/220'; this.alt='Image not found'">
+                    <a href="/try-now?type=sunglasses&item=sunglasses2.png" class="btn" onclick="tryNow(event, this.href)">Try Now</a>
+                </div>
+                <div class="item">
+                    <img src="/static/sunglasses3.png" alt="Sunglasses 3" onerror="this.src='https://via.placeholder.com/220'; this.alt='Image not found'">
+                    <a href="/try-now?type=sunglasses&item=sunglasses3.png" class="btn" onclick="tryNow(event, this.href)">Try Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="category">
+            <h2>Watches</h2>
+            <div class="item-container">
+                <div class="item">
+                    <img src="/static/Watch1.png" alt="Watch 1" onerror="this.src='https://via.placeholder.com/220'; this.alt='Image not found'">
+                    <a href="/try-now?type=watch&item=Watch1.png" class="btn" onclick="tryNow(event, this.href)">Try Now</a>
+                </div>
+                <div class="item">
+                    <img src="/static/Watch2.png" alt="Watch 2" onerror="this.src='https://via.placeholder.com/220'; this.alt='Image not found'">
+                    <a href="/try-now?type=watch&item=Watch2.png" class="btn" onclick="tryNow(event, this.href)">Try Now</a>
+                </div>
+                <div class="item">
+                    <img src="/static/Watch3.png" alt="Watch 3" onerror="this.src='https://via.placeholder.com/220'; this.alt='Image not found'">
+                    <a href="/try-now?type=watch&item=Watch3.png" class="btn" onclick="tryNow(event, this.href)">Try Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="category">
+            <h2>Necklaces</h2>
+            <div class="item-container">
+                <div class="item">
+                    <img src="/static/Neck1.png" alt="Necklace 1" onerror="this.src='https://via.placeholder.com/220'; this.alt='Image not found'">
+                    <a href="/try-now?type=necklace&item=Neck1.png" class="btn" onclick="tryNow(event, this.href)">Try Now</a>
+                </div>
+                <div class="item">
+                    <img src="/static/Neck2.png" alt="Necklace 2" onerror="this.src='https://via.placeholder.com/220'; this.alt='Image not found'">
+                    <a href="/try-now?type=necklace&item=Neck2.png" class="btn" onclick="tryNow(event, this.href)">Try Now</a>
+                </div>
+                <div class="item">
+                    <img src="/static/Neck3.png" alt="Necklace 3" onerror="this.src='https://via.placeholder.com/220'; this.alt='Image not found'">
+                    <a href="/try-now?type=necklace&item=Neck3.png" class="btn" onclick="tryNow(event, this.href)">Try Now</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <iframe id="tryon-iframe" src="/tryon" style="width: 100%; height: 600px; border: none;"></iframe>
+    <div id="recommendations"></div>
+    <script>
+        function tryNow(event, url) {
+            event.preventDefault();
+            console.log("Attempting to load:", url); // Debug log
+            const iframe = document.getElementById('tryon-iframe');
+            if (iframe) {
+                console.log("Setting iframe src to:", url);
+                iframe.src = url;
+            } else {
+                console.error("Iframe not found!");
+                fetch(url)
+                    .then(response => {
+                        console.log("Fetch response:", response.status);
+                        return response.text();
+                    })
+                    .then(html => {
+                        document.body.innerHTML = html;
+                    })
+                    .catch(error => {
+                        console.error("Fetch error:", error);
+                        alert('Failed to load try-on. Check console.');
+                    });
+            }
+        }
+    </script>
+</body>
+</html>
